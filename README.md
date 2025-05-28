@@ -14,3 +14,11 @@ Run jobCommander directly with a command (e.g ./jobCommander issueJob ls -l). If
 
 ### Mode 2 (Two Terminals):
 In Terminal 1, start the server manually: ./jobExecutorServer. In terminal 2 send commands using jobCommander. This mode allows real-time output to appear in the terminal running the server.
+
+# jobExecutorServer
+
+The jobExecutorServer writes its process ID (PID) to a .txt file upon startup, allowing other processes (like jobCommander) to detect whether the server is active.
+
+Its core logic is based on an infinite loop that remains in a paused state (pause()), resuming execution only when it receives a SIGCONT signal from a jobCommander. Upon receiving the signal, it reads the incoming command from the pipe and processes it accordingly.
+
+Additionally, when the server receives a SIGCHLD signal—indicating that a previously launched job has terminated—it removes that job from the running queue using its PID. It then checks whether there is available space in the running queue and, if so, promotes the next job from the waiting queue to execution.
