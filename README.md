@@ -22,7 +22,7 @@ Its core logic is based on an infinite loop that remains in a paused state (paus
 
 Additionally, when the server receives a SIGCHLD signal—indicating that a previously launched job has terminated—it removes that job from the running queue using its PID. It then checks whether there is available space in the running queue and, if so, promotes the next job from the waiting queue to execution.
 
-# JobCommander
+# jobCommander
 When executed, jobCommander first checks whether the server (jobExecutorServer) is running. If the server is not active, jobCommander launches it using exec.
 
 It then reads the .txt file created by the server to obtain its process ID (PID).
