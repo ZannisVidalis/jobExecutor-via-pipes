@@ -32,6 +32,6 @@ Before sending a command through the pipe, jobCommander sends a SIGCONT signal t
 ### Commands
 1. issueJob <command>: Submits a job. It will be placed in either the running queue (if slots are available) or the waiting queue. Each job receives a unique jobID (e.g., job_1).
 2. setConcurrency <N>: Sets the maximum number of concurrent jobs. If increased, jobs are moved from the waiting queue to execution. If decreased, the change is applied only if the running queue is empty.
-3. stop <jobID>: Stops a running job or removes it from the waiting queue:
+3. stop <jobID>: Stops a running job or removes it from the waiting queue
 4. poll running / poll queued: Lists all currently running or queued jobs with their jobID, original command, and queue position.
 5. exit: Shuts down the server, deletes the jobExecutorServer.txt file, and closes named pipes.
